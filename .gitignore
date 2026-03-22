@@ -1,0 +1,12 @@
+# Nix
+/.direnv
+/result*
+
+# Python
+__pycache__/
+/.coverage*
+
+
+# Added by cargo
+
+/target
