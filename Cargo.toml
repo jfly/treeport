@@ -1,6 +1,8 @@
 [package]
-name = "src-gc"
+name = "src-report"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+clap = { version = ">= 4.6.0", features = ["derive"] }
+tqdm = "0.8.0"
