@@ -308,14 +308,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "67b1b7a3b5fe4f1376887184045fcf45c69e92af734b7aaddc05fb777b6fbd03"
 
 [[package]]
-name = "src-report"
-version = "0.1.0"
-dependencies = [
- "clap",
- "tqdm",
-]
-
-[[package]]
 name = "strsim"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -341,6 +333,14 @@ dependencies = [
  "anyhow",
  "crossterm",
  "once_cell",
+]
+
+[[package]]
+name = "treeport"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "tqdm",
 ]
 
 [[package]]

@@ -1,4 +1,4 @@
-# `src-report`
+# `treeport`
 
 Recursively search through a given directory for code repositories and produce
 a report on the status of those repositories.
@@ -8,12 +8,12 @@ the ocean!
 
 ## Usage
 
-Usage is pretty simple, just give `src-report` a directory to search through
+Usage is pretty simple, just give `treeport` a directory to search through
 and a directory to put the results in. This may take a little while, but
 there's a progress bar to keep you entertained.
 
 ```
-$ src-report ~/src /tmp/results
+$ treeport ~/src /tmp/results
 Trawling through /home/jeremy/src... found 726 repos!
 Analyzing repos...
 100%|█████████████████████████████████| 726/726 [00:07<00:00, 125.31it/s]
