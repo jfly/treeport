@@ -1,0 +1,15 @@
+[[categories]]
+name = "git"
+command = ["test", "-e", ".git"]
+
+[[categories.stats]]
+name = "status"
+command = ["./git-status.sh"]
+
+[[categories.stats]]
+name = "size (bytes)"
+command = ["nu", "--commands", "du . | first | get physical | into int"]
+
+[[categories]]
+name = "git-bare"
+command = ["git", "rev-parse", "--is-bare-repository"]

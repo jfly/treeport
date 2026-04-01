@@ -35,6 +35,10 @@
 
         nativeCheckInputs = [
           pkgs.clippy
+
+          # Tools used by `examples/git-treeport.toml`, which is used in our tests.
+          pkgs.git
+          pkgs.nushell
         ];
 
         checkPhase = ''

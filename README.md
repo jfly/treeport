@@ -1,43 +1,34 @@
 # `treeport`
 
-Recursively search through a given directory for code repositories and produce
-a report on the status of those repositories.
+`treeport` ("tree report") walks the filesystem starting from a given root
+directory. It attempts to categorize each directory it finds. Each category has
+potentially many "stat" commands that fetch stats about the directory.
 
-If you have only synced repositories, feel free to throw your computer in
-the ocean!
+Under the hood, it uses the fastest filesystem walking technique I've
+discovered from [polyglot-walks](https://github.com/jfly/polyglot-walks).
 
 ## Usage
 
-Usage is pretty simple, just give `treeport` a directory to search through
-and a directory to put the results in. This may take a little while, but
-there's a progress bar to keep you entertained.
+Just give `treeport` a report spec file and a directory to search through.
+By default, the results will be printed to stdout as CSV data. Here, I'm
+passing it into `nushell` for pretty printing:
 
 ```
-$ treeport ~/src /tmp/results
-Trawling through /home/jeremy/src... found 726 repos!
-Analyzing repos...
-100%|█████████████████████████████████| 726/726 [00:07<00:00, 125.31it/s]
-
-# Summary
-Found 611 synced repos (see /tmp/results/synced.txt)
-Found 81 dirty repos (see /tmp/results/dirty.txt)
-Found 43 unpushed repos (see /tmp/results/unpushed.txt)
-Found 2 misc files not inside of a repo (see /tmp/results/misc.txt)
+$ treeport examples/git-treeport.toml --root ~/src | nu --stdin --commands '$in | from csv'
+╭─────┬──────────────────────────────────────────────────────────────┬──────────┬──────────┬──────────────╮
+│   # │                                    path                      │ category │  status  │ size (bytes) │
+├─────┼──────────────────────────────────────────────────────────────┼──────────┼──────────┼──────────────┤
+│   0 │ /home/jeremy/src/github.com/uranusjr/packaging-the-hard-way  │ git      │ synced   │       430080 │
+│   1 │ /home/jeremy/src/github.com/jfly/devshed                     │ git      │ synced   │       372736 │
+│   2 │ /home/jeremy/src/github.com/smallstep/cli                    │ git      │ synced   │     14794752 │
+...
+│ 306 │ /home/jeremy/src/github.com/jfly/noutlive/noutlive.c         │ misc     │          │              │
+...
 ```
 
 ## Why
 
-I do a lot of open source work, and as a result, I end up cloning a *lot* of
-repositories onto my laptop. I don't like worrying about if I have anything
-precious on my laptop, so run this tool periodically to make sure everything is
-clean. This is especially useful if I'm about to reformat my laptop.
-
-I also sometimes run out of disk space. I can run this tool and then delete
-clean repos to free space.
-
-## Known issues
-
-`git` isn't the only [VCS] out there, but it's the only one this tool knows
-about. PRs welcome for more VCSes!
-
-[VCS]: https://en.wikipedia.org/wiki/List_of_version-control_software
+I use a variant of [git-treeport.toml](examples/git-treeport.toml) to discover
+dirty or unpushed git repos in my `~/src` directory. I also sometimes run out
+of disk space. This lets me search for repos that are safe to delete and sort
+them by size.

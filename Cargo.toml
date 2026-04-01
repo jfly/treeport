@@ -1,8 +1,19 @@
 [package]
 name = "treeport"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 
 [dependencies]
+anyhow = "1.0.102"
 clap = { version = ">= 4.6.0", features = ["derive"] }
-tqdm = "0.8.0"
+csv = ">= 1.4.0"
+indicatif = ">= 0.18.4"
+nonempty = { version = ">= 0.12.0", features = ["serialize"] }
+rayon = ">= 1.11.0"
+serde = { version = ">= 1.0.228", features = ["derive"] }
+toml = ">= 1.1.0"
+
+[dev-dependencies]
+assert_cmd = ">= 2.2.0"
+predicates = ">= 3.1.4"
+tempfile = "3.27.0"
