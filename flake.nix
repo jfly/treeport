@@ -2,7 +2,10 @@
   description = "A nix flake template";
 
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
 
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
